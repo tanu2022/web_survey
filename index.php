@@ -1,7 +1,77 @@
 <?PHP
 include('config.php');
+  $success_insert = '';
 if(isset($_POST['submit_btn'])){
-	echo "<pre>"; print_r($_POST); die('--hiii');
+	$resident_name = $_POST['resident_name'] ?? '';
+	$resident_address = $_POST['resident_address'] ?? '';
+	$location_of_meter = $_POST['location_of_meter'] ?? '';
+	$size_of_service = $_POST['size_of_service'] ?? '';
+	$material_of_service = $_POST['material_of_service'] ?? '';
+	$date_constructed = $_POST['date_constructed'] ?? '';
+	
+	if (isset($_FILES['photo_upstream_meter'])){
+		
+		// get details of the uploaded file
+		$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
+		$fileName = $_FILES['photo_upstream_meter']['name'];
+		$fileSize = $_FILES['photo_upstream_meter']['size'];
+		$fileType = $_FILES['photo_upstream_meter']['type'];
+		$fileNameCmps = explode(".", $fileName);
+		$fileExtension = strtolower(end($fileNameCmps));
+	 
+		// sanitize file-name
+		$newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+		
+		// directory in which the uploaded file will be moved
+		$uploadFileDir = 'survey_images/';
+		$dest_path = $uploadFileDir . $newFileName;
+	 
+		if(move_uploaded_file($fileTmpPath, $dest_path)) 
+		{
+			$message ='File is successfully uploaded.';
+			$photo_upstream_meter = $newFileName ?? '';
+		}
+	} else {
+		$photo_upstream_meter = '';
+	}
+	
+	if (isset($_FILES['photo_meter'])){
+		
+		// get details of the uploaded file
+		$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
+		$fileName = $_FILES['photo_meter']['name'];
+		$fileSize = $_FILES['photo_meter']['size'];
+		$fileType = $_FILES['photo_meter']['type'];
+		$fileNameCmps = explode(".", $fileName);
+		$fileExtension = strtolower(end($fileNameCmps));
+	 
+		// sanitize file-name
+		$newFileName_m = md5(time() . $fileName) . '.' . $fileExtension;
+		
+		// directory in which the uploaded file will be moved
+		$uploadFileDir = 'survey_images/';
+		$dest_path = $uploadFileDir . $newFileName_m;
+	 
+		if(move_uploaded_file($fileTmpPath, $dest_path)) 
+		{
+			$message ='File is successfully uploaded.';
+			$photo_meter = $newFileName_m ?? '';
+		}
+	} else {
+		$photo_meter = '';
+	}
+	
+	
+	$insert_sql = "INSERT INTO survey_tbl set resident_name='{$resident_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}', photo_upstream_meter='{$photo_upstream_meter}', photo_meter='{$photo_meter}'";
+
+if (mysqli_query($mysqli, $insert_sql)) {
+	
+
+  $success_insert = 'yes';
+} else {
+  $success_insert = 'no';
+}
+	
 }
 ?>
 <!DOCTYPE html>
@@ -22,9 +92,14 @@ if(isset($_POST['submit_btn'])){
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 		
+	
+
+		
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+	
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
@@ -43,15 +118,22 @@ if(isset($_POST['submit_btn'])){
                         <div class="p-5">
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Web Survey Form</h1>
+								<div class="return_msg">
+									<?php if($success_insert == 'yes'){ ?>
+									<div class="text-success">Survey data inserted successfully.</div>
+									<?php } else if($success_insert == 'no') { ?>
+									<div class="text-danger">Opps! Something went wrong.</div>
+									<?php } ?>
+								</div>
                             </div>
                             <form class="user" name="survey_form" method="POST" action="" enctype="multipart/form-data" >
                                 <div class="form-group">
 									<label for="resident_name">Resident Name</label>
-                                    <input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name">
+                                    <input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name" required >
                                 </div>
                                 <div class="form-group">
 									<label for="resident_address">Resident Address</label>
-                                    <select class="form-control form-control-user selectpicker" data-live-search="true"  id="resident_address" name="resident_address">
+                                    <select class="form-control form-control-user selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
 										<option value="" selected>----Please Select Address----</option>
 										<option value="a1">Address1</option>
 										<option value="a2">Address2</option>
@@ -81,7 +163,15 @@ if(isset($_POST['submit_btn'])){
                                 </div>
 								<div class="form-group">
 									<label for="date_constructed">Date constructed</label>
-                                    <input type="text" class="form-control form-control-user" id="date_constructed" name="date_constructed" placeholder="Date constructed">
+									<div class="start_date input-group mb-4">
+										<input type="text" class="form-control form-control-user" id="date_constructed" name="date_constructed" placeholder="Date constructed">
+										<div class="input-group-append">
+										  <span class="fa fa-calendar input-group-text start_date_calendar" aria-hidden="true "></span>
+										</div>
+
+									  </div>
+									
+                                    
                                 </div>
 								<div class="form-group">
 									<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
@@ -104,19 +194,31 @@ if(isset($_POST['submit_btn'])){
         </div>
 
     </div>
-
+	
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+	
 
+		
+	<!-- Include Bootstrap Datepicker -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+	
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+	<script>jQuery("#date_constructed").datepicker({
+		format : 'yyyy-mm-dd',
+		autoclose : true
+	});</script>
+	
+	
 	
 	
 
