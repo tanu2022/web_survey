@@ -120,7 +120,7 @@ if (mysqli_query($mysqli, $insert_sql)) {
                                 <h1 class="h4 text-gray-900 mb-4">Web Survey Form</h1>
 								<div class="return_msg">
 									<?php if($success_insert == 'yes'){ ?>
-									<div class="text-success">Survey data inserted successfully.</div>
+									<div class="text-success text-bold">Your Survey Form has been submitted. Thank you</div>
 									<?php } else if($success_insert == 'no') { ?>
 									<div class="text-danger">Opps! Something went wrong.</div>
 									<?php } ?>
@@ -144,15 +144,15 @@ if (mysqli_query($mysqli, $insert_sql)) {
                                 </div>
 								<div class="form-group">
 									<label for="location_of_meter">Location of meter within the building</label>
-                                    <input type="text" class="form-control form-control-user" id="location_of_meter" name="location_of_meter" placeholder="Location of meter within the building">
+                                    <input type="text" class="form-control form-control-user" id="location_of_meter" name="location_of_meter" placeholder="Location of meter within the building" required>
                                 </div>
 								<div class="form-group">
 									<label for="size_of_service">Size of the service (inches)</label>
-                                    <input type="text" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) ">
+                                    <input type="number" min="0" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) " required>
                                 </div>
 								<div class="form-group">
 									<label for="material_of_service">Material of the service upstream of the meter</label>
-									<select class="form-control form-control-user" id="material_of_service" name="material_of_service">
+									<select class="form-control form-control-user" id="material_of_service" name="material_of_service" required>
 										<option value="" selected>--Please Select--</option>
 										<option value="m1">Material1</option>
 										<option value="m2">Material2</option>
@@ -175,11 +175,11 @@ if (mysqli_query($mysqli, $insert_sql)) {
                                 </div>
 								<div class="form-group">
 									<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
-                                    <input type="file" class="form-control form-control-user" id="photo_upstream_meter" name="photo_upstream_meter" placeholder="A photo of the service line upstream of the meter">
+                                    <input type="file" class="form-control form-control-user" id="photo_upstream_meter" name="photo_upstream_meter" placeholder="A photo of the service line upstream of the meter" required >
                                 </div>
 								<div class="form-group">
 									<label for="photo_meter">A photo of the meter</label>
-                                    <input type="file" class="form-control form-control-user" id="photo_meter" name="photo_meter" placeholder="A photo of the meter">
+                                    <input type="file" class="form-control form-control-user" id="photo_meter" name="photo_meter" placeholder="A photo of the meter" required>
                                 </div>
                                 
                                 <input type="submit" class="btn btn-primary btn-user btn-block" id="submit_btn" name="submit_btn" value="Submit Survey" >
