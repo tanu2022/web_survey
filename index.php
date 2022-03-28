@@ -20,17 +20,11 @@ if(isset($_POST['submit_btn'])){
 		$fileExtension = strtolower(end($fileNameCmps));
 	 
 		// sanitize file-name
-		$newFileName = md5(time() . $fileName) . '.' . $fileExtension;
+		$newFileName = time() . $fileName . '.' . $fileExtension;
 		
 		// directory in which the uploaded file will be moved
-		$uploadFileDir = 'survey_images/';
-		$dest_path = $uploadFileDir . $newFileName;
-	 
-		if(move_uploaded_file($fileTmpPath, $dest_path)) 
-		{
-			$message ='File is successfully uploaded.';
-			$photo_upstream_meter = $newFileName ?? '';
-		}
+		$photo_upstream_meter = $newFileName ?? '';
+		
 	} else {
 		$photo_upstream_meter = '';
 	}
@@ -46,17 +40,13 @@ if(isset($_POST['submit_btn'])){
 		$fileExtension = strtolower(end($fileNameCmps));
 	 
 		// sanitize file-name
-		$newFileName_m = md5(time() . $fileName) . '.' . $fileExtension;
+		$newFileName_m = time() . $fileName . '.' . $fileExtension;
 		
 		// directory in which the uploaded file will be moved
-		$uploadFileDir = 'survey_images/';
-		$dest_path = $uploadFileDir . $newFileName_m;
-	 
-		if(move_uploaded_file($fileTmpPath, $dest_path)) 
-		{
-			$message ='File is successfully uploaded.';
-			$photo_meter = $newFileName_m ?? '';
-		}
+		
+		
+		$photo_meter = $newFileName_m ?? '';
+		
 	} else {
 		$photo_meter = '';
 	}
@@ -64,13 +54,29 @@ if(isset($_POST['submit_btn'])){
 	
 	$insert_sql = "INSERT INTO survey_tbl set resident_name='{$resident_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}', photo_upstream_meter='{$photo_upstream_meter}', photo_meter='{$photo_meter}'";
 
-if (mysqli_query($mysqli, $insert_sql)) {
-	
+	if (mysqli_query($mysqli, $insert_sql)) {
+		$last_id = $mysqli->insert_id;
+		$survey_upload_dir = 'survey_images/survey_'.$last_id; 
+		mkdir($survey_upload_dir, 0777, true);  //create directory if not exist
+		
+		if($photo_meter != ''){
+			$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
+			$dest_path = $survey_upload_dir . $photo_meter;
+			move_uploaded_file($fileTmpPath, $dest_path);
+			
+		}
+		
+		if($photo_upstream_meter != ''){
+			$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
+			$dest_path = $survey_upload_dir . $photo_upstream_meter;
+			move_uploaded_file($fileTmpPath, $dest_path);
+			
+		}
 
-  $success_insert = 'yes';
-} else {
-  $success_insert = 'no';
-}
+	  $success_insert = 'yes';
+	} else {
+	  $success_insert = 'no';
+	}
 	
 }
 ?>
