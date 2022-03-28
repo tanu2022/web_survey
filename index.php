@@ -135,11 +135,19 @@ if (mysqli_query($mysqli, $insert_sql)) {
 									<label for="resident_address">Resident Address</label>
                                     <select class="form-control form-control-user selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
 										<option value="" selected>----Please Select Address----</option>
-										<option value="a1">Address1</option>
-										<option value="a2">Address2</option>
-										<option value="a3">Address3</option>
-										<option value="a4">Address4</option>
-										<option value="a5">Address5</option>
+										<?php
+											$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
+											$result_set =  $mysqli->query($sql_address);
+											if (!empty($result_set->num_rows)) {
+												while($row = mysqli_fetch_array($result_set))
+												{
+												?>
+								 
+													<option value="<?php echo $row['address']; ?>"><?php echo $row['address']; ?></option>
+												<?php
+												}
+											}
+										?>
 									</select>
                                 </div>
 								<div class="form-group">

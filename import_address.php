@@ -1,69 +1,46 @@
 <?PHP
-use Phppot\DataSource;
-use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 include('config.php');
-require_once ('./vendor/autoload.php');
-
+require 'excel_reader/vendor/autoload.php';
+ 
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+ 
+$success_insert = '';
 if (isset($_POST["import"])) {
+	$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($_FILES['file']['tmp_name']);
+	 
+	$sheet = $spreadsheet->getActiveSheet();
+	 
+	// Store data from the activeSheet to the varibale in the form of Array
+	//$data = array(1,$sheet->toArray(null,true,true,true)); 
+	$data = $sheet->toArray(); 
+	 // echo "<pre>"; print_r($data);
+// die;
+	$sheetCount = count($data);
+	
+	if($sheetCount > 0){
+		foreach($data as $rowData){
+			$address = "";
+			if (isset($rowData[0])) {
+				$address = mysqli_real_escape_string($mysqli, $rowData[0]);
+			}
+			
+			if (! empty($address)) {
+				$insert_sql = "INSERT INTO address_tbl set address='{$address}'";
 
-    $allowedFileType = [
-        'application/vnd.ms-excel',
-        'text/xls',
-        'text/xlsx',
-        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    ];
+				if (mysqli_query($mysqli, $insert_sql)) {
+					$success_insert = "yes";
+				} else {
+					$success_insert = "no";
+				}
+			}
+		}
+	}
+			
 
-    if (in_array($_FILES["file"]["type"], $allowedFileType)) {
-
-        $targetPath = 'uploads_xls/' . $_FILES['file']['name'];
-        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
-
-        $Reader = new PhpSpreadsheet\src\PhpSpreadsheet\Reader\Xlsx();
-
-        $spreadSheet = $Reader->load($targetPath);
-        $excelSheet = $spreadSheet->getActiveSheet();
-        $spreadSheetAry = $excelSheet->toArray();
-        $sheetCount = count($spreadSheetAry);
-
-        for ($i = 0; $i <= $sheetCount; $i ++) {
-            $name = "";
-            if (isset($spreadSheetAry[$i][0])) {
-                $name = mysqli_real_escape_string($conn, $spreadSheetAry[$i][0]);
-            }
-            $description = "";
-            if (isset($spreadSheetAry[$i][1])) {
-                $description = mysqli_real_escape_string($conn, $spreadSheetAry[$i][1]);
-            }
-
-            if (! empty($name)) {
-                $query = "insert into address_tbl(name) values(?)";
-                $paramType = "ss";
-                $paramArray = array(
-                    $name
-                );
-                $insertId = $db->insert($query, $paramType, $paramArray);
-                // $query = "insert into tbl_info(name,description) values('" . $name . "','" . $description . "')";
-                // $result = mysqli_query($conn, $query);
-
-                if (! empty($insertId)) {
-                    $type = "success";
-                    $message = "Excel Data Imported into the Database";
-                } else {
-                    $type = "error";
-                    $message = "Problem in Importing Excel Data";
-                }
-            }
-        }
-    } else {
-        $type = "error";
-        $message = "Invalid File Type. Upload Excel File.";
-    }
+	
 }
-
-
-
-
-
+// Display the sheet content 
 
 
 include('admin_header.php');
@@ -85,15 +62,19 @@ include('admin_header.php');
 							<form action="" method="post"
 								name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
 								<div>
-									<label>Choose Excel
-										File</label> <input type="file" name="file"
-										id="file" accept=".xls,.xlsx">
-									<button type="submit" id="submit" name="import"
-										class="btn-submit">Import</button>
-							
+									<label>Choose Excel	File</label> 
+									<input type="file" name="file" id="file" accept=".xls,.xlsx">
+									<button type="submit" id="submit" name="import"	class="btn-submit">Import</button>
 								</div>
 							
 							</form>
+							<div class="return_msg">
+									<?php if($success_insert == 'yes'){ ?>
+									<div class="text-success text-bold">Excel Data Imported Successfully.</div>
+									<?php } else if($success_insert == 'no') { ?>
+									<div class="text-danger">Opps! Something went wrong.</div>
+									<?php } ?>
+								</div>
 						</div>
                         <div class="card-body">
                             <div class="table-responsive">
