@@ -67,6 +67,15 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Import Address</span></a>
             </li>
+			
+			<!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="down_zip.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Download Survey Files Zip</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
