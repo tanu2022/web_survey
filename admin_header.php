@@ -61,6 +61,15 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="import_address.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Import Address</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
