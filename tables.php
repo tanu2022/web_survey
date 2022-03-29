@@ -1,6 +1,11 @@
 <?PHP
 include('config.php');
 
+//check if user id not exist then redirect to login page
+	if(!(isset($_SESSION["ID"]) && $_SESSION["ID"] != '')){
+		header('Location: login.php');
+	}
+
 $get_survey_data_sql = "SELECT * FROM survey_tbl";
 $surveyData = $mysqli->query($get_survey_data_sql);
 // $row = mysqli_fetch_assoc($surveyData);

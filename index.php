@@ -1,5 +1,6 @@
 <?PHP
 include('config.php');
+
   $success_insert = '';
 if(isset($_POST['submit_btn'])){
 	$resident_name = $_POST['resident_name'] ?? '';

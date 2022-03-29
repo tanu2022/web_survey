@@ -19,6 +19,8 @@ if ($mysqli->connect_errno) {
 	exit();
 } 
 
+// Start the session
+session_start();
 
 
 ?>

@@ -11,8 +11,14 @@ if(isset($_POST['submit_btn'])){
 		if (!empty($userData->num_rows)) {
 			$success_login = 'Yes';
 			$message = 'Logged in successfully.';
-			$row = mysqli_fetch_array($userData);
-			echo "<pre>"; print_r($row); die('hello');
+			$row = mysqli_fetch_assoc($userData);
+			
+			// Set session variables
+			$_SESSION["ID"] = $row['id'];
+			$_SESSION["NAME"] = $row['f_name'].' '.$row['l_name'];
+			$_SESSION["EMAIL"] = $row['email'];
+			
+			header("Location: tables.php");
 			
 		} else {
 			$success_login = 'no';

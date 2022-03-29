@@ -1,5 +1,11 @@
 <?PHP
 include('config.php');
+
+//check if user id not exist then redirect to login page
+	if(!(isset($_SESSION["ID"]) && $_SESSION["ID"] != '')){
+		header('Location: login.php');
+	}
+
 require 'excel_reader/vendor/autoload.php';
  
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
