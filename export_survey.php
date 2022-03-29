@@ -20,8 +20,17 @@ if (!empty($surveyData->num_rows)) {
 	$spreadsheet = new Spreadsheet();
  
 	$sheet = $spreadsheet->getActiveSheet(); 
-		
-	$i = 1;
+	
+	$sheet->setCellValue('A1', 'Resident Name'); 
+	$sheet->setCellValue('B1', 'Resident Address'); 
+	$sheet->setCellValue('C1', 'Location of meter within the building'); 
+	$sheet->setCellValue('D1', 'Size of the service (inches)'); 
+	$sheet->setCellValue('E1', 'Material of the service upstream of the meter'); 
+	$sheet->setCellValue('F1', 'Date constructed'); 
+	$sheet->setCellValue('G1', 'A photo of the service line upstream of the meter'); 
+	$sheet->setCellValue('H1', 'A photo of the meter'); 
+	
+	$i = 2;
 	while ($row = mysqli_fetch_assoc($surveyData)) {
 		$id =  $row['id'] ?? '';
 		$resident_name =  $row['resident_name'] ?? '';
