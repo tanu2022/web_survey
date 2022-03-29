@@ -28,9 +28,11 @@ include('admin_header.php');
 								<div class="col-md-6">
 									<h3 class="m-0 font-weight-bold text-primary">Survey Data</h3>
 								</div>
+								<?php if (!empty($surveyData->num_rows)) { ?>
 								<div class="col-md-6">
 									<a href="export_survey.php" class="btn btn-primary">EXPORT SURVEY DATA</a>
 								</div>
+								<?php } ?>
 							</div>
                         </div>
                         <div class="card-body">
