@@ -69,7 +69,7 @@ include('admin_header.php');
 								name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
 								<div>
 									<label>Choose Excel	File</label> 
-									<input type="file" name="file" id="file" accept=".xls,.xlsx">
+									<input type="file" name="file" id="file" accept=".xls,.xlsx" required>
 									<button type="submit" id="submit" name="import"	class="btn-submit">Import</button>
 								</div>
 							
