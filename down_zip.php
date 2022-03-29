@@ -45,4 +45,5 @@ header('Pragma: public');
 header('Content-Length: ' . filesize($zip_file));
 readfile($zip_file);
 
+unlink($zip_file);
 ?>
