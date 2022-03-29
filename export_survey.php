@@ -53,5 +53,9 @@ if (!empty($surveyData->num_rows)) {
 		$writer = new Xlsx($spreadsheet);
 	   
 	// Save .xlsx file to the current directory 
-	$writer->save('survey.xlsx'); 
+	//$writer->save('survey.xlsx'); 
+	$fileName = 'survey.xlsx';
+	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename="'. urlencode($fileName).'"');
+        $writer->save('php://output');
 }

@@ -20,7 +20,7 @@ if(isset($_POST['submit_btn'])){
 		$fileExtension = strtolower(end($fileNameCmps));
 	 
 		// sanitize file-name
-		$newFileName = time() . $fileName . '.' . $fileExtension;
+		$newFileName = time() . $fileName;
 		
 		// directory in which the uploaded file will be moved
 		$photo_upstream_meter = $newFileName ?? '';
@@ -40,7 +40,7 @@ if(isset($_POST['submit_btn'])){
 		$fileExtension = strtolower(end($fileNameCmps));
 	 
 		// sanitize file-name
-		$newFileName_m = time() . $fileName . '.' . $fileExtension;
+		$newFileName_m = time() . $fileName;
 		
 		// directory in which the uploaded file will be moved
 		
@@ -61,14 +61,14 @@ if(isset($_POST['submit_btn'])){
 		
 		if($photo_meter != ''){
 			$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
-			$dest_path = $survey_upload_dir . $photo_meter;
+			$dest_path = $survey_upload_dir.'/'.$photo_meter;
 			move_uploaded_file($fileTmpPath, $dest_path);
 			
 		}
 		
 		if($photo_upstream_meter != ''){
 			$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
-			$dest_path = $survey_upload_dir . $photo_upstream_meter;
+			$dest_path = $survey_upload_dir.'/'.$photo_upstream_meter;
 			move_uploaded_file($fileTmpPath, $dest_path);
 			
 		}
@@ -166,7 +166,7 @@ if(isset($_POST['submit_btn'])){
                                 </div>
 								<div class="form-group">
 									<label for="material_of_service">Material of the service upstream of the meter</label>
-									<select class="form-control form-control-user" id="material_of_service" name="material_of_service" required>
+									<select class="form-control form-control-user selectpicker" id="material_of_service" name="material_of_service" required>
 										<option value="" selected>--Please Select--</option>
 										<option value="m1">Material1</option>
 										<option value="m2">Material2</option>
