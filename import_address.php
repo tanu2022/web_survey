@@ -67,7 +67,7 @@ include('admin_header.php');
                         <div class="card-body">
 							<form action="" method="post"
 								name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
-								<div>
+								<div class="main-cover">
 									<label>Choose Excel	File</label> 
 									<input type="file" name="file" id="file" accept=".xls,.xlsx" required>
 									<button type="submit" id="submit" name="import"	class="btn-submit">Import</button>
