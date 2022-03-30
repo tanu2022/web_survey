@@ -29,7 +29,7 @@ include('admin_header.php');
 									<h3 class="m-0 font-weight-bold text-primary">Survey Data</h3>
 								</div>
 								<?php if (!empty($surveyData->num_rows)) { ?>
-								<div class="col-md-6">
+								<div class="col-md-6 text-right">
 									<a href="export_survey.php" class="btn btn-primary">EXPORT SURVEY DATA</a>
 								</div>
 								<?php } ?>

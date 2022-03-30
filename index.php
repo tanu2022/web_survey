@@ -109,17 +109,17 @@ include('header.php');
 									<label for="resident_name">Resident Name</label>
                                     <input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name" required >
                                 </div>
-                                <div class="form-group">
-									<label for="resident_address">Resident Address</label>
-                                    <select class="form-control form-control-user selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
-										<option value="" selected>----Please Select Address----</option>
-										<?php
-											$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
-											$result_set =  $mysqli->query($sql_address);
-											if (!empty($result_set->num_rows)) {
-												while($row = mysqli_fetch_array($result_set))
-												{
-												?>
+              <div class="form-group">
+	<label for="resident_address">Resident Address</label>
+              <select class="form-control p-0 m-0 selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
+			<option value="" selected>----Please Select Address----</option>
+									<?php
+				$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
+								$result_set =  $mysqli->query($sql_address);
+						if (!empty($result_set->num_rows)) {
+									while($row = mysqli_fetch_array($result_set))
+										{
+									?>
 								 
 													<option value="<?php echo $row['address']; ?>"><?php echo $row['address']; ?></option>
 												<?php
@@ -138,7 +138,7 @@ include('header.php');
                                 </div>
 								<div class="form-group">
 									<label for="material_of_service">Material of the service upstream of the meter</label>
-									<select class="form-control form-control-user selectpicker" id="material_of_service" name="material_of_service" required>
+									<select class="form-control p-0 m-0 selectpicker" id="material_of_service" name="material_of_service" required>
 										<option value="" selected>--Please Select--</option>
 										<option value="m1">Material1</option>
 										<option value="m2">Material2</option>
