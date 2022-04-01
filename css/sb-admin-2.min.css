@@ -10316,4 +10316,13 @@ input#submit_btn:hover{
     background-color: #4b70dc;
     color: #fff;
     font-weight: 500;
+
+}
+.bootstrap-select .dropdown-toggle:focus{
+    outline: 0px;
+    color: #000 !important; 
+}
+button.btn.dropdown-toggle.btn-light {
+    color: #000;
+
 }
