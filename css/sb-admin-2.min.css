@@ -10278,4 +10278,51 @@ body.sidebar-toggled footer.sticky-footer {
     height: 49px;
     background-color: #f8f9fc;
     padding: 8px;
+<<<<<<< Updated upstream
+=======
+}
+.form-heading {
+    font-size: 29px;
+    font-weight: 500;
+    background-color: #343434;
+    padding: 10px;
+    color: #fff !important;
+    text-align: center;
+}
+.login-form  label, .web-servey label {
+    color: #000;
+    margin-bottom: 5px;
+}
+input#submit_btn {
+    padding: 12px !important;
+    border-radius: 50px !important;
+    font-size: 17px;
+    background-color: #343434 !important;
+    border: 0;
+    margin-top: 27px !important;
+}
+input#submit_btn:hover{
+    background-color: #4e73df !important;
+}
+.web-servey input::placeholder {
+    font-size: 13px;
+}
+.filter-option-inner-inner {
+    font-size: 13px;
+}
+.datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top{
+    top:100px !important ;
+}
+#dataTable thead tr th {
+    background-color: #4b70dc;
+    color: #fff;
+    font-weight: 500;
+}
+.bootstrap-select .dropdown-toggle:focus{
+    outline: 0px;
+    color: #000 !important; 
+}
+button.btn.dropdown-toggle.btn-light {
+    color: #000;
+>>>>>>> Stashed changes
 }
