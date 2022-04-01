@@ -104,68 +104,74 @@ include('header.php');
 									<?php } ?>
 								</div>
                             </div>
-                            <form class="user" name="survey_form" method="POST" action="" enctype="multipart/form-data" >
-                                <div class="form-group">
-									<label for="resident_name">Resident Name</label>
-                                    <input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name" required >
+                            <form class="user" name="survey_form" method="POST" action="" enctype="multipart/form-data" autocomplete="off" >
+                                <div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="resident_name">Resident Name</label>
+										<input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name" required >
+									</div>
+									<div class="col-sm-6">
+										<label for="size_of_service">Size of the service (inches)</label>
+										<input type="number" min="0" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) " required>
+									</div>
                                 </div>
-              <div class="form-group">
-	<label for="resident_address">Resident Address</label>
-              <select class="form-control p-0 m-0 selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
-			<option value="" selected>----Please Select Address----</option>
-									<?php
-				$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
-								$result_set =  $mysqli->query($sql_address);
-						if (!empty($result_set->num_rows)) {
-									while($row = mysqli_fetch_array($result_set))
-										{
-									?>
-								 
-													<option value="<?php echo $row['address']; ?>"><?php echo $row['address']; ?></option>
-												<?php
-												}
-											}
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="resident_address">Resident Address</label>
+										<select class="form-control p-0 m-0 selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
+										<option value="" selected>-- Please Select --</option>
+										<?php
+										$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
+										$result_set =  $mysqli->query($sql_address);
+										if (!empty($result_set->num_rows)) {
+										while($row = mysqli_fetch_array($result_set))
+											{
 										?>
-									</select>
-                                </div>
-								<div class="form-group">
-									<label for="location_of_meter">Location of meter within the building</label>
-                                    <input type="text" class="form-control form-control-user" id="location_of_meter" name="location_of_meter" placeholder="Location of meter within the building" required>
-                                </div>
-								<div class="form-group">
-									<label for="size_of_service">Size of the service (inches)</label>
-                                    <input type="number" min="0" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) " required>
-                                </div>
-								<div class="form-group">
-									<label for="material_of_service">Material of the service upstream of the meter</label>
-									<select class="form-control p-0 m-0 selectpicker" id="material_of_service" name="material_of_service" required>
-										<option value="" selected>--Please Select--</option>
-										<option value="m1">Material1</option>
-										<option value="m2">Material2</option>
-										<option value="m3">Material3</option>
-										<option value="m4">Material4</option>
-										<option value="m5">Material5</option>
-									</select>
-                                </div>
-								<div class="form-group">
-									<label for="date_constructed">Date constructed</label>
-									<div class="start_date input-group mb-4">
-										<input type="text" class="form-control form-control-user" id="date_constructed" name="date_constructed" placeholder="Date constructed">
-										<div class="input-group-append">
-										  <span class="fa fa-calendar input-group-text start_date_calendar" aria-hidden="true "></span>
-										</div>
 
-									  </div>
-									
-                                    
+														<option value="<?php echo $row['address']; ?>"><?php echo $row['address']; ?></option>
+													<?php
+													}
+												}
+											?>
+										</select>
+									</div>
+									<div class="col-sm-6">
+										<label for="location_of_meter">Location of meter within the building</label>
+										<input type="text" class="form-control form-control-user" id="location_of_meter" name="location_of_meter" placeholder="Location of meter within the building" required>
+									</div>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="material_of_service">Material of the service upstream of the meter</label>
+										<select class="form-control p-0 m-0 selectpicker" id="material_of_service" name="material_of_service" required>
+											<option value="" selected>-- Please Select --</option>
+											<option value="m1">Material1</option>
+											<option value="m2">Material2</option>
+											<option value="m3">Material3</option>
+											<option value="m4">Material4</option>
+											<option value="m5">Material5</option>
+										</select>
+									</div>
+									<div class="col-sm-6">
+										<label for="date_constructed">Date constructed</label>
+										<div class="start_date input-group mb-4">
+											<input type="text" class="form-control form-control-user" id="date_constructed" name="date_constructed" placeholder="Date constructed">
+											<div class="input-group-append">
+											  <span class="fa fa-calendar input-group-text start_date_calendar" aria-hidden="true "></span>
+											</div>
+
+										</div>
+									</div>
                                 </div>
-								<div class="form-group">
-									<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
-                                    <input type="file" class="form-control form-control-user" id="photo_upstream_meter" name="photo_upstream_meter" placeholder="A photo of the service line upstream of the meter" required >
-                                </div>
-								<div class="form-group">
-									<label for="photo_meter">A photo of the meter</label>
-                                    <input type="file" class="form-control form-control-user" id="photo_meter" name="photo_meter" placeholder="A photo of the meter" required>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
+										<input type="file" class="form-control form-control-user" id="photo_upstream_meter" name="photo_upstream_meter" placeholder="A photo of the service line upstream of the meter" required >
+									</div>
+									<div class="col-sm-6">
+										<label for="photo_meter">A photo of the meter</label>
+										<input type="file" class="form-control form-control-user" id="photo_meter" name="photo_meter" placeholder="A photo of the meter" required>
+									</div>
                                 </div>
                                 
                                 <input type="submit" class="btn btn-primary btn-user btn-block" id="submit_btn" name="submit_btn" value="Submit Survey" >

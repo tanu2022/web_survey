@@ -50,18 +50,7 @@ include('admin_header.php');
                                             <th>A photo of the meter</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Resident Name</th>
-                                            <th>Resident Address</th>
-                                            <th>Location of meter within the building</th>
-                                            <th>Size of the service (inches)</th>
-                                            <th>Material of the service upstream of the meter</th>
-                                            <th>Date constructed</th>
-                                            <th>A photo of the service line upstream of the meter</th>
-                                            <th>A photo of the meter</th>
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
 										<?php
 											if (!empty($surveyData->num_rows)) {

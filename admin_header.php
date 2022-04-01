@@ -56,7 +56,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Survey Data Table</span></a>
+                    <span>Survey</span></a>
             </li>
 
             <!-- Divider -->
