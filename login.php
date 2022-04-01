@@ -37,19 +37,20 @@ include('header.php');
     <div class="container">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-5 col-lg-5 col-md-5">
 
                 <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+                    <div class="card-body login-form p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             
                             <div class="col-lg-12">
-                                <div class="p-5">
+                                <h1 class="h4 text-gray-900 mb-4 form-heading">Login</h1>
+                                <div class="p-4">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                        
 										<div class="return_msg">
 											<?php if($success_login == 'yes'){ ?>
 											<div class="text-success text-bold"><?php echo $message; ?></div>

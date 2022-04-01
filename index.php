@@ -88,14 +88,15 @@ include('header.php');
     <div class="container">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
+            <div class="card-body p-0 web-servey">
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <!--<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>-->
                     <div class="col-lg-12">
-                        <div class="p-5">
+                    	<h1 class="h4 text-gray-900 mb-4 form-heading">Web Survey Form</h1>
+                        <div class="p-4">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Web Survey Form</h1>
+                                
 								<div class="return_msg">
 									<?php if($success_insert == 'yes'){ ?>
 									<div class="text-success text-bold">Your Survey Form has been submitted. Thank you</div>
