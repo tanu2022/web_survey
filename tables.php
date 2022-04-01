@@ -64,7 +64,7 @@ include('admin_header.php');
 													<td><?php echo $row['location_of_meter'] ?? ''; ?></td>
 													<td><?php echo $row['size_of_service'] ?? ''; ?></td>
 													<td><?php echo $row['material_of_service'] ?? ''; ?></td>
-													<td><?php echo $row['date_constructed'] ?? ''; ?></td>
+													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : $row['date_constructed']; ?></td>
 													<td>
 														<?php if($row['photo_upstream_meter'] != '' && $row['photo_upstream_meter'] != NULL){ ?>
 														<img src="survey_images/survey_<?php echo $row['id'].'/'.$row['photo_upstream_meter']; ?>" width="100px" height="100px" >

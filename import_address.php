@@ -62,7 +62,7 @@ include('admin_header.php');
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h3 class="m-0 font-weight-bold text-primary">Survey Data</h3>
+                            <h3 class="m-0 font-weight-bold text-primary">Import Excel</h3>
                         </div>
                         <div class="card-body">
 							<form action="" method="post"
@@ -97,7 +97,7 @@ include('admin_header.php');
                                     </tfoot>
                                     <tbody>
 										<?php
-											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY 'id' DESC";
+											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY address ASC";
 											$result_set =  $mysqli->query($SQLSELECT);
 											if (!empty($result_set->num_rows)) {
 												while($row = mysqli_fetch_array($result_set))
