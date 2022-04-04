@@ -7,7 +7,8 @@ $surveyData = $mysqli->query($get_survey_data_sql);
 // echo "<pre>"; print_r($row); die('hello');
 
 include('header.php');
-?>
+?>					<div class="logo-section" style="width: 100%; background-color: #fff; margin: 2px 0 17px 0; padding: 10px;">
+    	<img src="img/dark_logo.png" alt="logo.png" class="logo-icon d-flex m-auto" style="width: 160px;">   </div>
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -31,7 +32,7 @@ include('header.php');
 									
 								</div>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-4 text-right">
 									<a href="index.php" class="btn btn-primary">GO BACK</a>
 								</div>
 							</div>

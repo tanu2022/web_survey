@@ -10310,7 +10310,7 @@ input#submit_btn:hover{
     font-size: 13px;
 }
 .datepicker.datepicker-dropdown.dropdown-menu.datepicker-orient-left.datepicker-orient-top{
-    top:100px !important ;
+    top:300px !important ;
 }
 #dataTable thead tr th {
     background-color: #4b70dc;
@@ -10324,5 +10324,12 @@ input#submit_btn:hover{
 }
 button.btn.dropdown-toggle.btn-light {
     color: #000;
-
+}
+.return_msg div {
+    background-color: #1cc88a;
+    color: #fff !important;
+    text-align: center;
+    padding: 4px 5px;
+    border-radius: 5px;
+    font-weight: 500;
 }
