@@ -23,7 +23,12 @@ include('header.php');
 								<div class="col-md-6">
 									<h3 class="m-0 font-weight-bold text-primary">Survey Result</h3>
 								</div>
-								
+								<div class="return_msg">
+									<?php if(isset($_SESSION['success_msg']) && $_SESSION['success_msg'] != ''){ ?>
+									<div class="text-success text-bold"><?php echo $_SESSION['success_msg']; ?></div>
+									<?php }  ?>
+									
+								</div>
 							</div>
                         </div>
                         <div class="card-body">
