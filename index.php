@@ -109,12 +109,16 @@ if(isset($_POST['submit_btn'])){
 
 include('header.php');
 ?>
+<div class="logo-section" style="width: 100%; background-color: #fff; margin: 2px 0 17px 0; padding: 10px;">
+    	<img src="img/dark_logo.png" alt="logo.png" class="logo-icon d-flex m-auto" style="width: 160px;">   </div>
 
+    
 
     <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card o-hidden border-0 shadow-lg mb-5 mt-2">
             <div class="card-body p-0 web-servey">
+
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <!--<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>-->
