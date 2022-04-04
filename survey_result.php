@@ -20,14 +20,19 @@ include('header.php');
                     <div class="card shadow my-5">
                         <div class="card-header py-3">
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-4">
 									<h3 class="m-0 font-weight-bold text-primary">Survey Result</h3>
 								</div>
+								<div class="col-md-4">
 								<div class="return_msg">
 									<?php if(isset($_SESSION['success_msg']) && $_SESSION['success_msg'] != ''){ ?>
 									<div class="text-success text-bold"><?php echo $_SESSION['success_msg']; ?></div>
 									<?php }  ?>
 									
+								</div>
+								</div>
+								<div class="col-md-4">
+									<a href="index.php" class="btn btn-primary">GO BACK</a>
 								</div>
 							</div>
                         </div>
