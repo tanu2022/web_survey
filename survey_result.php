@@ -21,7 +21,7 @@ include('header.php');
                         <div class="card-header py-3">
 							<div class="row">
 								<div class="col-md-6">
-									<h3 class="m-0 font-weight-bold text-primary">Survey Data</h3>
+									<h3 class="m-0 font-weight-bold text-primary">Survey Result</h3>
 								</div>
 								
 							</div>
@@ -49,12 +49,12 @@ include('header.php');
 												//echo "<pre>"; print_r($row); //die('--hii');
 												?>
 												<tr>
-													<td><?php echo $row['resident_name'] ?? ''; ?></td>
+													<td><?php echo $row['resident_f_name'] ?? ''; echo ' '.$row['resident_l_name'] ?? ''; ?></td>
 													<td><?php echo $row['resident_address'] ?? ''; ?></td>
 													<td><?php echo $row['location_of_meter'] ?? ''; ?></td>
 													<td><?php echo $row['size_of_service'] ?? ''; ?></td>
 													<td><?php echo $row['material_of_service'] ?? ''; ?></td>
-													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : $row['date_constructed']; ?></td>
+													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : date('m/d/Y',strtotime($row['date_constructed'])); ?></td>
 													
 												</tr>
 												

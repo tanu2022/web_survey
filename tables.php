@@ -46,8 +46,7 @@ include('admin_header.php');
                                             <th>Size of the service (inches)</th>
                                             <th>Material of the service upstream of the meter</th>
                                             <th>Date constructed</th>
-                                            <th>A photo of the service line upstream of the meter</th>
-                                            <th>A photo of the meter</th>
+                                            
                                         </tr>
                                     </thead>
                                     
@@ -59,22 +58,13 @@ include('admin_header.php');
 												//echo "<pre>"; print_r($row); //die('--hii');
 												?>
 												<tr>
-													<td><?php echo $row['resident_name'] ?? ''; ?></td>
+													<td><?php echo $row['resident_f_name'] ?? ''; echo ' '.$row['resident_l_name'] ?? ''; ?></td>
 													<td><?php echo $row['resident_address'] ?? ''; ?></td>
 													<td><?php echo $row['location_of_meter'] ?? ''; ?></td>
 													<td><?php echo $row['size_of_service'] ?? ''; ?></td>
 													<td><?php echo $row['material_of_service'] ?? ''; ?></td>
-													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : $row['date_constructed']; ?></td>
-													<td>
-														<?php if($row['photo_upstream_meter'] != '' && $row['photo_upstream_meter'] != NULL){ ?>
-														<img src="survey_images/survey_<?php echo $row['id'].'/'.$row['photo_upstream_meter']; ?>" width="100px" height="100px" >
-														<?php } ?>
-													</td>
-													<td>
-														<?php if($row['photo_meter'] != '' && $row['photo_meter'] != NULL){ ?>
-														<img src="survey_images/survey_<?php echo $row['id'].'/'.$row['photo_meter']; ?>" width="100px" height="100px" >
-														<?php } ?>
-													</td>
+													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : date('m/d/Y',strtotime($row['date_constructed'])); ?></td>
+													
 												</tr>
 												
 												<?php
