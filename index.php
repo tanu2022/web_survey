@@ -3,14 +3,15 @@ include('config.php');
 
   $success_insert = '';
 if(isset($_POST['submit_btn'])){
-	$resident_name = $_POST['resident_name'] ?? '';
+	$resident_f_name = $_POST['resident_f_name'] ?? '';
+	$resident_l_name = $_POST['resident_l_name'] ?? '';
 	$resident_address = $_POST['resident_address'] ?? '';
 	$location_of_meter = $_POST['location_of_meter'] ?? '';
 	$size_of_service = $_POST['size_of_service'] ?? '';
 	$material_of_service = $_POST['material_of_service'] ?? '';
-	$date_constructed = $_POST['date_constructed'] ?? '';
+	$date_constructed = date('Y-m-d',strtotime($_POST['date_constructed'])) ?? '';
 	
-	if (isset($_FILES['photo_upstream_meter'])){
+	/*if (isset($_FILES['photo_upstream_meter'])){
 		
 		// get details of the uploaded file
 		$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
@@ -51,16 +52,39 @@ if(isset($_POST['submit_btn'])){
 	} else {
 		$photo_meter = '';
 	}
+	*/
 	
-	
-	$insert_sql = "INSERT INTO survey_tbl set resident_name='{$resident_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}', photo_upstream_meter='{$photo_upstream_meter}', photo_meter='{$photo_meter}'";
+	$insert_sql = "INSERT INTO survey_tbl set resident_f_name='{$resident_f_name}', resident_l_name='{$resident_l_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}'";
 
 	if (mysqli_query($mysqli, $insert_sql)) {
 		$last_id = $mysqli->insert_id;
 		$survey_upload_dir = 'survey_images/survey_'.$last_id; 
 		mkdir($survey_upload_dir, 0777, true);  //create directory if not exist
 		
-		if($photo_meter != ''){
+		
+		$photo_meter = array_filter($_FILES['photo_meter']['name']); 
+		if(!empty($photo_meter)){ 
+			foreach($_FILES['photo_meter']['name'] as $key=>$val){ 
+				// File upload path 
+				$fileName = basename($_FILES['photo_meter']['name'][$key]); 
+				$targetFilePath = $survey_upload_dir .'/meter_'.time().'_'. $fileName; 
+				
+				move_uploaded_file($_FILES["photo_meter"]["tmp_name"][$key], $targetFilePath);	
+			} 
+		}
+		
+		$photo_upstream_meter = array_filter($_FILES['photo_upstream_meter']['name']); 
+		if(!empty($photo_upstream_meter)){ 
+			foreach($_FILES['photo_upstream_meter']['name'] as $key=>$val){ 
+				// File upload path 
+				$fileName_up = basename($_FILES['photo_upstream_meter']['name'][$key]); 
+				$targetFilePath_up = $survey_upload_dir .'/upstream_'.time().'_'. $fileName_up; 
+				
+				move_uploaded_file($_FILES["photo_upstream_meter"]["tmp_name"][$key], $targetFilePath_up);	
+			} 
+		}
+		
+		/*if($photo_meter != ''){
 			$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
 			$dest_path = $survey_upload_dir.'/'.$photo_meter;
 			move_uploaded_file($fileTmpPath, $dest_path);
@@ -73,8 +97,10 @@ if(isset($_POST['submit_btn'])){
 			move_uploaded_file($fileTmpPath, $dest_path);
 			
 		}
+		*/
 
 	  $success_insert = 'yes';
+	  header('Location: survey_result.php');
 	} else {
 	  $success_insert = 'no';
 	}
@@ -108,15 +134,17 @@ include('header.php');
                             <form class="user" name="survey_form" method="POST" action="" enctype="multipart/form-data" autocomplete="off" >
                                 <div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<label for="resident_name">Resident Name</label>
-										<input type="text" class="form-control form-control-user" id="resident_name" name="resident_name" placeholder="Resident Name" required >
+										<label for="resident_f_name">Resident First Name</label>
+										<input type="text" class="form-control form-control-user" id="resident_f_name" name="resident_f_name" placeholder="Resident First Name" required >
 									</div>
-									<div class="col-sm-6">
-										<label for="size_of_service">Size of the service (inches)</label>
-										<input type="number" min="0" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) " required>
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="resident_l_name">Resident Last Name</label>
+										<input type="text" class="form-control form-control-user" id="resident_l_name" name="resident_l_name" placeholder="Resident Last Name" required >
 									</div>
+									
                                 </div>
 								<div class="form-group row">
+									
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<label for="resident_address">Resident Address</label>
 										<select class="form-control p-0 m-0 selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
@@ -137,8 +165,8 @@ include('header.php');
 										</select>
 									</div>
 									<div class="col-sm-6">
-										<label for="location_of_meter">Location of meter within the building</label>
-										<input type="text" class="form-control form-control-user" id="location_of_meter" name="location_of_meter" placeholder="Location of meter within the building" required>
+										<label for="size_of_service">Size of the service (inches)</label>
+										<input type="number" min="0" class="form-control form-control-user" id="size_of_service" name="size_of_service" placeholder="Size of the service (inches) " required>
 									</div>
 								</div>
 								<div class="form-group row">
@@ -146,14 +174,34 @@ include('header.php');
 										<label for="material_of_service">Material of the service upstream of the meter</label>
 										<select class="form-control p-0 m-0 selectpicker" id="material_of_service" name="material_of_service" required>
 											<option value="" selected>-- Please Select --</option>
-											<option value="m1">Material1</option>
-											<option value="m2">Material2</option>
-											<option value="m3">Material3</option>
-											<option value="m4">Material4</option>
-											<option value="m5">Material5</option>
+											<option value="Lead">Lead</option>
+											<option value="Copper">Copper</option>
+											<option value="Brass">Brass</option>
+											<option value="Galvanized">Galvanized</option>
 										</select>
 									</div>
 									<div class="col-sm-6">
+										<label for="location_of_meter">Location of meter within the building</label>
+										<select class="form-control p-0 m-0 selectpicker"  id="location_of_meter" name="location_of_meter" required >
+										<option value="" selected>-- Please Select --</option>
+										<option value="Front of the Building">Front of the Building</option>
+										<option value="Middle of the Building">Middle of the Building</option>
+										<option value="Back of the Building">Back of the Building</option>
+										</select>
+									</div>
+                                </div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
+										<input type="file" class="form-control form-control-user" name="photo_upstream_meter[]" multiple required >
+									</div>
+									<div class="col-sm-6">
+										<label for="photo_meter">A photo of the meter</label>
+										<input type="file" class="form-control form-control-user" name="photo_meter[]" multiple required>
+									</div>
+                                </div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
 										<label for="date_constructed">Date constructed</label>
 										<div class="start_date input-group mb-4">
 											<input type="text" class="form-control form-control-user" id="date_constructed" name="date_constructed" placeholder="Date constructed">
@@ -162,16 +210,6 @@ include('header.php');
 											</div>
 
 										</div>
-									</div>
-                                </div>
-								<div class="form-group row">
-									<div class="col-sm-6 mb-3 mb-sm-0">
-										<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
-										<input type="file" class="form-control form-control-user" id="photo_upstream_meter" name="photo_upstream_meter" placeholder="A photo of the service line upstream of the meter" required >
-									</div>
-									<div class="col-sm-6">
-										<label for="photo_meter">A photo of the meter</label>
-										<input type="file" class="form-control form-control-user" id="photo_meter" name="photo_meter" placeholder="A photo of the meter" required>
 									</div>
                                 </div>
                                 

@@ -25,7 +25,7 @@
 	<script src="js/demo/datatables-demo.js"></script>
 	
 	<script>jQuery("#date_constructed").datepicker({
-		format : 'yyyy-mm-dd',
+		format : 'mm/dd/yyyy',
 		autoclose : true
 	});</script>
 	
