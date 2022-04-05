@@ -53,9 +53,9 @@ include('header.php');
                                         
 										<div class="return_msg">
 											<?php if($success_login == 'yes'){ ?>
-											<div class="text-success text-bold"><?php echo $message; ?></div>
+											<div class="bg-success"><?php echo $message; ?></div>
 											<?php } else if($success_login == 'no') { ?>
-											<div class="text-danger"><?php echo $message; ?></div>
+											<div class="bg-danger"><?php echo $message; ?></div>
 											<?php } ?>
 										</div>
                                     </div>

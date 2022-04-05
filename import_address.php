@@ -76,9 +76,9 @@ include('admin_header.php');
 							</form>
 							<div class="return_msg">
 									<?php if($success_insert == 'yes'){ ?>
-									<div class="text-success text-bold">Excel Data Imported Successfully.</div>
+									<div class="bg-success">Excel Data Imported Successfully.</div>
 									<?php } else if($success_insert == 'no') { ?>
-									<div class="text-danger">Opps! Something went wrong.</div>
+									<div class="bg-danger">Opps! Something went wrong.</div>
 									<?php } ?>
 								</div>
 						</div>
