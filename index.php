@@ -101,7 +101,7 @@ if(isset($_POST['submit_btn'])){
 
 	  $success_insert = 'yes';
 	  $_SESSION['success_msg'] = "Your Survey Form has been submitted. Thank you";
-	  header('Location: survey_result.php');
+	  header('Location: survey_result.php?id='.$last_id);
 	} else {
 	  $success_insert = 'no';
 	}

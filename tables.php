@@ -40,12 +40,16 @@ include('admin_header.php');
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Resident Name</th>
-                                            <th>Resident Address</th>
+                                            <th>Resident first name</th>
+                                            <th>Resident last name</th>
+                                            <th>Resident address</th>
                                             <th>Location of meter within the building</th>
                                             <th>Size of the service (inches)</th>
                                             <th>Material of the service upstream of the meter</th>
                                             <th>Date constructed</th>
+                                            <th>A photo of the service line upstream of the meter</th>
+                                            <th>A photo of the meter</th>
+                                            <th>Survey images folder name</th>
                                             
                                         </tr>
                                     </thead>
@@ -58,12 +62,16 @@ include('admin_header.php');
 												//echo "<pre>"; print_r($row); //die('--hii');
 												?>
 												<tr>
-													<td><?php echo $row['resident_f_name'] ?? ''; echo ' '.$row['resident_l_name'] ?? ''; ?></td>
+													<td><?php echo $row['resident_f_name'] ?? '';  ?></td>
+													<td><?php echo $row['resident_l_name'] ?? ''; ?></td>
 													<td><?php echo $row['resident_address'] ?? ''; ?></td>
 													<td><?php echo $row['location_of_meter'] ?? ''; ?></td>
 													<td><?php echo $row['size_of_service'] ?? ''; ?></td>
 													<td><?php echo $row['material_of_service'] ?? ''; ?></td>
 													<td><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : date('m/d/Y',strtotime($row['date_constructed'])); ?></td>
+													<td><?php echo $row['photo_upstream_meter'] ?? ''; ?></td>
+													<td><?php echo $row['photo_meter'] ?? ''; ?></td>
+													<td><?php echo 'survey_'.$row['id']; ?></td>
 													
 												</tr>
 												
