@@ -107,9 +107,21 @@ include('admin_header.php');
 												{
 												?>
 													<tr>
-														<td><?php echo $row['name']; ?></td>
 														<td>
-															<a class="nav-link" href="#" title="EDIT">
+															<input type="hidden" class="before_edit" name="old_m_name" id="old_m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
+															<input type="text" class="before_edit" name="m_name" id="m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
+															
+															<span id="success_msg_<?php echo $row['id']; ?>" style="display:none">Value updated successfully</span>
+															
+															<span id="err_msg_<?php echo $row['id']; ?>" style="display:none">Please fill out this field</span>
+															
+															<span class="act_btn" id="act_btn_<?php echo $row['id']; ?>">
+																<button class="btn-save" onclick="save_edit(<?php echo $row['id']; ?>)">Save</button>
+																<button class="btn-cancel" onclick="cancel_edit(<?php echo $row['id']; ?>)">Cancel</button>
+															</span>
+														</td>
+														<td>
+															<a class="nav-link" href="javascript:;" onclick="edit_fun('<?php echo $row['id']; ?>')" class="edit_icon" title="EDIT">
 																<i class="fas fa-fw fa-edit"></i>
 															</a>
 															<a class="nav-link" href="material_drop.php?del_id=<?php echo $row['id']; ?>" title="DELETE" onclick="return confirm('Are you sure?')">
@@ -135,6 +147,55 @@ include('admin_header.php');
             </div>
             <!-- End of Main Content -->
 
- <?PHP
-include('admin_footer.php');
-?>          
+ <?PHP include('admin_footer.php'); ?> 
+<style type="text/css">
+	.act_btn{ display:none;}
+</style>
+
+<script type="text/javascript">
+	function edit_fun($row_id){
+		$('#m_name_'+$row_id).removeClass('before_edit');
+		$('#m_name_'+$row_id).addClass('after_edit');
+		$('#m_name_'+$row_id).attr("readonly", false);
+		$('#act_btn_' + $row_id).show();
+		// alert($row_id)
+	}
+	
+	function save_edit($row_id){
+		var m_name = $('#m_name_'+$row_id).val();
+		if(m_name != ''){
+			$.ajax({
+				url: "edit_ajax.php",
+
+				type: "POST",
+				dataType:'json', // add json datatype to get json
+				data: ({"myData":m_name,"myDataId":$row_id}),
+				success: function(data){
+					if(data == 'yes'){
+						$('#m_name_'+$row_id).addClass('before_edit');
+						$('#m_name_'+$row_id).removeClass('after_edit');
+						$('#m_name_'+$row_id).attr("readonly", true);
+						$('#act_btn_' + $row_id).hide();
+						$('#success_msg_'+$row_id).css('display','block');
+					} else {
+						$('#err_msg_'+$row_id).html('Opps! Something went wrong');
+						$('#err_msg_'+$row_id).css('display','block');
+					}
+				}
+			});
+		} else {
+			$('#err_msg_'+$row_id).css('display','block');
+			$('#m_name_'+$row_id).css('border','1px solid red');
+		}
+	}	
+	
+	function cancel_edit($row_id){
+		var value_old = $('#old_m_name_'+$row_id).val();
+		$('#m_name_'+$row_id).val(value_old);
+		$('#m_name_'+$row_id).addClass('before_edit');
+		$('#m_name_'+$row_id).removeClass('after_edit');
+		$('#m_name_'+$row_id).attr("readonly", true);
+		$('#act_btn_' + $row_id).hide();
+		
+	}
+</script>         
