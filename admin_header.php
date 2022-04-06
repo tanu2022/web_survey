@@ -34,11 +34,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="tables.php">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-poll"></i>
                 </div> -->
-                <div class="sidebar-brand-text mx-3"><img src="http://50.116.49.118/web_survey/img/dark_logo.png" width="150px"> <sup></sup></div>
+                <div class="sidebar-brand-text mx-3"><img src="img/dark_logo.png" width="150px"> <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -57,6 +57,15 @@
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Survey</span></a>
+            </li>
+			
+			<!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="material_drop.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Material Dropdown</span></a>
             </li>
 
             <!-- Divider -->

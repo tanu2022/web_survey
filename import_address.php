@@ -90,14 +90,10 @@ include('admin_header.php');
                                             <th>Resident Address</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Resident Address</th>
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
 										<?php
-											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY address ASC";
+											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY id ASC";
 											$result_set =  $mysqli->query($SQLSELECT);
 											if (!empty($result_set->num_rows)) {
 												while($row = mysqli_fetch_array($result_set))

@@ -11,49 +11,6 @@ if(isset($_POST['submit_btn'])){
 	$material_of_service = $_POST['material_of_service'] ?? '';
 	$date_constructed = date('Y-m-d',strtotime($_POST['date_constructed'])) ?? '';
 	
-	/*if (isset($_FILES['photo_upstream_meter'])){
-		
-		// get details of the uploaded file
-		$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
-		$fileName = $_FILES['photo_upstream_meter']['name'];
-		$fileSize = $_FILES['photo_upstream_meter']['size'];
-		$fileType = $_FILES['photo_upstream_meter']['type'];
-		$fileNameCmps = explode(".", $fileName);
-		$fileExtension = strtolower(end($fileNameCmps));
-	 
-		// sanitize file-name
-		$newFileName = time() . $fileName;
-		
-		// directory in which the uploaded file will be moved
-		$photo_upstream_meter = $newFileName ?? '';
-		
-	} else {
-		$photo_upstream_meter = '';
-	}
-	
-	if (isset($_FILES['photo_meter'])){
-		
-		// get details of the uploaded file
-		$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
-		$fileName = $_FILES['photo_meter']['name'];
-		$fileSize = $_FILES['photo_meter']['size'];
-		$fileType = $_FILES['photo_meter']['type'];
-		$fileNameCmps = explode(".", $fileName);
-		$fileExtension = strtolower(end($fileNameCmps));
-	 
-		// sanitize file-name
-		$newFileName_m = time() . $fileName;
-		
-		// directory in which the uploaded file will be moved
-		
-		
-		$photo_meter = $newFileName_m ?? '';
-		
-	} else {
-		$photo_meter = '';
-	}
-	*/
-	
 	$insert_sql = "INSERT INTO survey_tbl set resident_f_name='{$resident_f_name}', resident_l_name='{$resident_l_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}'";
 
 	if (mysqli_query($mysqli, $insert_sql)) {
@@ -84,21 +41,6 @@ if(isset($_POST['submit_btn'])){
 			} 
 		}
 		
-		/*if($photo_meter != ''){
-			$fileTmpPath = $_FILES['photo_meter']['tmp_name'];
-			$dest_path = $survey_upload_dir.'/'.$photo_meter;
-			move_uploaded_file($fileTmpPath, $dest_path);
-			
-		}
-		
-		if($photo_upstream_meter != ''){
-			$fileTmpPath = $_FILES['photo_upstream_meter']['tmp_name'];
-			$dest_path = $survey_upload_dir.'/'.$photo_upstream_meter;
-			move_uploaded_file($fileTmpPath, $dest_path);
-			
-		}
-		*/
-
 	  $success_insert = 'yes';
 	  $_SESSION['success_msg'] = "Your Survey Form has been submitted. Thank you";
 	  header('Location: survey_result.php?id='.$last_id);
@@ -155,7 +97,7 @@ include('header.php');
 										<select class="form-control p-0 m-0 selectpicker" data-live-search="true"  id="resident_address" name="resident_address" required >
 										<option value="" selected>-- Please Select --</option>
 										<?php
-										$sql_address = "SELECT * FROM address_tbl ORDER BY address ASC";
+										$sql_address = "SELECT * FROM address_tbl ORDER BY id ASC";
 										$result_set =  $mysqli->query($sql_address);
 										if (!empty($result_set->num_rows)) {
 										while($row = mysqli_fetch_array($result_set))
