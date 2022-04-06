@@ -11,12 +11,12 @@ $user_id = $_SESSION["ID"];
 if(isset($_POST['submit_btn'])){
 	$m_drp_val = $_POST['m_drp_val'] ?? '';
 	
-	$insert_sql = "INSERT INTO material_drop_tbl set name='{$m_drp_val}'";
+	$insert_sql = "INSERT INTO location_drop_tbl set name='{$m_drp_val}'";
 
 	if (mysqli_query($mysqli, $insert_sql)) {
 	  $success_login = 'yes';
 	  $message = "Value added successfully";
-	  header('Location: material_drop.php?upd=success');
+	  header('Location: location_drop.php?upd=success');
 	} else {
 	  $success_login = 'no';
 	  $message = "Opps! Something went wrong";
@@ -26,11 +26,11 @@ if(isset($_POST['submit_btn'])){
 
 if(isset($_GET['del_id']) && $_GET['del_id'] != '' ){
 	$delete_id = $_GET['del_id'];
-	$del_sql = "DELETE FROM material_drop_tbl WHERE id='{$delete_id}'";
+	$del_sql = "DELETE FROM location_drop_tbl WHERE id='{$delete_id}'";
 	if (mysqli_query($mysqli, $del_sql)) {
 	  $success_login = 'yes';
 	  $message = "Value deleted successfully";
-	  header('Location: material_drop.php?delete=success');
+	  header('Location: location_drop.php?delete=success');
 	} else {
 	  $success_login = 'no';
 	  $message = "Opps! Something went wrong";
@@ -53,7 +53,7 @@ include('admin_header.php');
                         <div class="card-header py-3">
 							<div class="row">
 								<div class="col-md-6">
-									<h3 class="m-0 font-weight-bold text-primary">Material Dropdown Values</h3>
+									<h3 class="m-0 font-weight-bold text-primary">Location Dropdown Values</h3>
 								</div>
 								
 							</div>
@@ -77,7 +77,7 @@ include('admin_header.php');
 							</div>
                             <form class="user" method="POST" action="" >
 								<div class="form-group">
-									<label for="f_name">Enter Material Dropdown Value</label>
+									<label for="f_name">Enter Location Dropdown Value</label>
 									<input type="text" class="form-control form-control-user" id="m_drp_val" name="m_drp_val" required placeholder="Enter Material Drop Value...."  >
 								</div>
 								
@@ -93,14 +93,14 @@ include('admin_header.php');
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Material Dropdown Values</th>
+                                            <th>Location Dropdown Values</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
 										<?php
-											$SQLSELECT = "SELECT * FROM material_drop_tbl ORDER BY id DESC";
+											$SQLSELECT = "SELECT * FROM location_drop_tbl ORDER BY id DESC";
 											$result_set =  $mysqli->query($SQLSELECT);
 											if (!empty($result_set->num_rows)) {
 												while($row = mysqli_fetch_array($result_set))
@@ -124,7 +124,7 @@ include('admin_header.php');
 															<a class="nav-link" href="javascript:;" onclick="edit_fun('<?php echo $row['id']; ?>')" class="edit_icon" title="EDIT">
 																<i class="fas fa-fw fa-edit"></i>
 															</a>
-															<a class="nav-link" href="material_drop.php?del_id=<?php echo $row['id']; ?>" title="DELETE" onclick="return confirm('Are you sure?')">
+															<a class="nav-link" href="location_drop.php?del_id=<?php echo $row['id']; ?>" title="DELETE" onclick="return confirm('Are you sure?')">
 																<i class="fas fa-fw fa-trash"></i>
 															</a>
 														</td>
@@ -169,7 +169,7 @@ include('admin_header.php');
 
 				type: "POST",
 				dataType:'json', // add json datatype to get json
-				data: ({"myData":m_name,"myDataId":$row_id, "action":"material"}),
+				data: ({"myData":m_name,"myDataId":$row_id, "action":"location"}),
 				success: function(data){
 					if(data == 'yes'){
 						$('#m_name_'+$row_id).addClass('before_edit');

@@ -67,6 +67,15 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Material Dropdown</span></a>
             </li>
+			
+			<!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="location_drop.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Location Dropdown</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
