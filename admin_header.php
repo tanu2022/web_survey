@@ -55,7 +55,7 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-poll"></i>
                     <span>Survey</span></a>
             </li>
 			
@@ -64,7 +64,7 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="material_drop.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-industry"></i>
                     <span>Material Dropdown</span></a>
             </li>
 			
@@ -73,7 +73,7 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="location_drop.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-map-marker"></i>
                     <span>Location Dropdown</span></a>
             </li>
 
@@ -82,7 +82,7 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="import_address.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-file-import"></i>
                     <span>Import Address</span></a>
             </li>
 			
@@ -91,7 +91,7 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="down_zip.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-fw fa-download"></i>
                     <span>Download Survey Files Zip</span></a>
             </li>
 
