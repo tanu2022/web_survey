@@ -121,19 +121,38 @@ include('header.php');
 										<label for="material_of_service">Material of the service upstream of the meter</label>
 										<select class="form-control p-0 m-0 selectpicker" id="material_of_service" name="material_of_service" required>
 											<option value="" selected>-- Please Select --</option>
-											<option value="Lead">Lead</option>
-											<option value="Copper">Copper</option>
-											<option value="Brass">Brass</option>
-											<option value="Galvanized">Galvanized</option>
+											<?php
+											$sql_address = "SELECT * FROM material_drop_tbl ORDER BY id ASC";
+											$result_set =  $mysqli->query($sql_address);
+											if (!empty($result_set->num_rows)) {
+											while($row = mysqli_fetch_array($result_set))
+												{
+											?>
+
+															<option value="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></option>
+														<?php
+														}
+													}
+												?>
 										</select>
 									</div>
 									<div class="col-sm-6">
 										<label for="location_of_meter">Location of meter within the building</label>
 										<select class="form-control p-0 m-0 selectpicker"  id="location_of_meter" name="location_of_meter" required >
 										<option value="" selected>-- Please Select --</option>
-										<option value="Front of the Building">Front of the Building</option>
-										<option value="Middle of the Building">Middle of the Building</option>
-										<option value="Back of the Building">Back of the Building</option>
+										<?php
+										$sql_address = "SELECT * FROM location_drop_tbl ORDER BY id ASC";
+										$result_set =  $mysqli->query($sql_address);
+										if (!empty($result_set->num_rows)) {
+										while($row = mysqli_fetch_array($result_set))
+											{
+										?>
+
+														<option value="<?php echo $row['name']; ?>"><?php echo $row['name']; ?></option>
+													<?php
+													}
+												}
+											?>
 										</select>
 									</div>
                                 </div>
