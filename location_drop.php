@@ -64,25 +64,25 @@ include('admin_header.php');
 									<?php if($success_login == 'yes' ){ ?>
 									<div class="bg-success mb-4"><?php echo $message; ?></div>
 									<?php } else if($success_login == 'no') { ?>
-									<div class="bg-danger mb-4"><?php echo $message; ?></div>
+									<div class="text-danger mb-4"><?php echo $message; ?></div>
 									<?php } else if(isset($_GET['upd']) && $_GET['upd'] == 'success') { ?>
-									<div class="bg-success mb-4"><?php echo "Value added successfully"; ?></div>
+									<div class="text-success mb-4"><?php echo "Value added successfully !"; ?></div>
 									<?php } else if(isset($_GET['delete']) && $_GET['delete'] == 'success') { ?>
-									<div class="bg-success mb-4"><?php echo "Value deleted successfully"; ?></div>
+									<div class="text-success mb-4"><?php echo "Value deleted successfully !"; ?></div>
 									<?php } ?>
 									
 									
 									
 								</div>
 							</div>
-                            <form class="user" method="POST" action="" >
-								<div class="form-group">
+                            <form class="user material_user" method="POST" action="" >
+								<div class="form-group ml-form-group">
 									<label for="f_name">Enter Location Dropdown Value</label>
-									<input type="text" class="form-control form-control-user" id="m_drp_val" name="m_drp_val" required placeholder="Enter Material Drop Value...."  >
+									<input type="text" class="form-control form-control-user1" id="m_drp_val" name="m_drp_val" required placeholder="Enter Material Drop Value...."  >
 								</div>
 								
 							  
-								<input type="submit" id="submit_btn" name="submit_btn" value="SUBMIT" class="btn btn-primary btn-user btn-block">
+								<input type="submit" id="submit_btn" class="ml_submit" name="submit_btn" value="SUBMIT" class="btn btn-primary btn-user btn-block">
 								   
 								
 							</form>
@@ -93,8 +93,8 @@ include('admin_header.php');
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Location Dropdown Values</th>
-                                            <th>Action</th>
+                                            <th style="width:73%;">Location Dropdown Values</th>
+                                            <th style="width:27%;">Action</th>
                                         </tr>
                                     </thead>
                                     
@@ -111,9 +111,9 @@ include('admin_header.php');
 															<input type="hidden" class="before_edit" name="old_m_name" id="old_m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
 															<input type="text" class="before_edit" name="m_name" id="m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
 															
-															<span id="success_msg_<?php echo $row['id']; ?>" style="display:none">Value updated successfully</span>
+															<span class="text-success" id="success_msg_<?php echo $row['id']; ?>" style="display:none">Value updated successfully !</span>
 															
-															<span id="err_msg_<?php echo $row['id']; ?>" style="display:none">Please fill out this field</span>
+															<span class="text-danger" id="err_msg_<?php echo $row['id']; ?>" style="display:none">Please fill out this field !</span>
 															
 															<span class="act_btn" id="act_btn_<?php echo $row['id']; ?>">
 																<button class="btn-save" onclick="save_edit(<?php echo $row['id']; ?>)">Save</button>
