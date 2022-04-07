@@ -42,7 +42,7 @@ if(isset($_POST['submit_btn'])){
 		}
 		
 	  $success_insert = 'yes';
-	  $_SESSION['success_msg'] = "Your Survey Form has been submitted. Thank you";
+	  $_SESSION['success_msg'] = "Your Survey Form has been submitted.";
 	  header('Location: survey_result.php?id='.$last_id);
 	} else {
 	  $success_insert = 'no';

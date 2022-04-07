@@ -75,11 +75,11 @@ include('admin_header.php');
 							<div class="text-center p-4">
 								<div class="return_msg">
 									<?php if($success_login == 'yes' ){ ?>
-									<div class="bg-success mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data"><?php echo $message; ?></div>
 									<?php } else if($success_login == 'no') { ?>
-									<div class="bg-danger mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data-danger"><?php echo $message; ?></div>
 									<?php } else if(isset($_GET['upd']) && $_GET['upd'] == 'success') { ?>
-									<div class="bg-success mb-4"><?php echo "User data updated successfully"; ?></div>
+									<div class="mb-4 value-data"><?php echo "User data updated successfully"; ?></div>
 									<?php } ?>
 									
 									

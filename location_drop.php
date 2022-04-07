@@ -62,13 +62,14 @@ include('admin_header.php');
 							<div class="text-center p-4">
 								<div class="return_msg">
 									<?php if($success_login == 'yes' ){ ?>
-									<div class="bg-success mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data"><?php echo $message; ?></div>
 									<?php } else if($success_login == 'no') { ?>
-									<div class="text-danger mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data-danger"><?php echo $message; ?></div>
 									<?php } else if(isset($_GET['upd']) && $_GET['upd'] == 'success') { ?>
-									<div class="text-success mb-4"><?php echo "Value added successfully !"; ?></div>
-									<?php } else if(isset($_GET['delete']) && $_GET['delete'] == 'success') { ?>
-									<div class="text-success mb-4"><?php echo "Value deleted successfully !"; ?></div>
+						<div class="mb-4 value-data"><?php echo "Value added successfully"; ?></div>
+							<?php } else if(isset($_GET['delete']) && $_GET['delete'] == 'success') { ?>
+							
+						<div class="mb-4 value-data"><?php echo "Value deleted successfully"; ?></div>
 									<?php } ?>
 									
 									
@@ -111,9 +112,9 @@ include('admin_header.php');
 															<input type="hidden" class="before_edit" name="old_m_name" id="old_m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
 															<input type="text" class="before_edit" name="m_name" id="m_name_<?php echo $row['id']; ?>" value="<?php echo $row['name']; ?>" readonly >
 															
-															<span class="text-success" id="success_msg_<?php echo $row['id']; ?>" style="display:none">Value updated successfully !</span>
+															<span class="text-success" id="success_msg_<?php echo $row['id']; ?>" style="display:none">Value updated successfully</span>
 															
-															<span class="text-danger" id="err_msg_<?php echo $row['id']; ?>" style="display:none">Please fill out this field !</span>
+															<span class="text-danger fw-bold" id="err_msg_<?php echo $row['id']; ?>" style="display:none">Please fill out this field !</span>
 															
 															<span class="act_btn" id="act_btn_<?php echo $row['id']; ?>">
 																<button class="btn-save" onclick="save_edit(<?php echo $row['id']; ?>)">Save</button>
