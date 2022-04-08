@@ -12,7 +12,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 
-$get_survey_data_sql = "SELECT * FROM survey_tbl";
+$get_survey_data_sql = "SELECT * FROM survey_tbl ORDER BY id DESC";
 $surveyData = $mysqli->query($get_survey_data_sql);
 // $row = mysqli_fetch_assoc($surveyData);
 // echo "<pre>"; print_r($row); die('hello');

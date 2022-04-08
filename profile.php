@@ -29,7 +29,16 @@ if(isset($_POST['submit_btn'])){
 		} else {
 			$success_login = 'no';
 			$message = "Both password should be same";
+			$update_sql = '';
 		}
+	} else if($password != '' && $c_password == ''){
+		$success_login = 'no';
+		$message = "Please fill both passwords";
+		$update_sql = '';
+	} else if($password == '' && $c_password != ''){
+		$success_login = 'no';
+		$message = "Please fill both passwords";
+		$update_sql = '';
 	} else {
 		$update_sql = "UPDATE users set f_name='{$f_name}', l_name='{$l_name}', email='{$email}' WHERE id='{$user_id}' ";
 	}
@@ -45,10 +54,10 @@ if(isset($_POST['submit_btn'])){
 			$success_login = 'no';
 			$message = "Opps! Something went wrong";
 		}
-	} else {
+	} /*else {
 		$success_login = 'no';
 		$message = "Opps! Something went wrong";
-	}
+	}*/
 }
 
 include('admin_header.php');
@@ -75,43 +84,43 @@ include('admin_header.php');
 							<div class="text-center p-4">
 								<div class="return_msg">
 									<?php if($success_login == 'yes' ){ ?>
-									<div class="bg-success mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data"><?php echo $message; ?></div>
 									<?php } else if($success_login == 'no') { ?>
-									<div class="bg-danger mb-4"><?php echo $message; ?></div>
+									<div class="mb-4 value-data-danger"><?php echo $message; ?></div>
 									<?php } else if(isset($_GET['upd']) && $_GET['upd'] == 'success') { ?>
-									<div class="bg-success mb-4"><?php echo "User data updated successfully"; ?></div>
+									<div class="mb-4 value-data"><?php echo "User data updated successfully"; ?></div>
 									<?php } ?>
 									
 									
 								</div>
 							</div>
-                            <form class="user" method="POST" action="" >
-								<div class="form-group">
+                            <form class="user profile_user" method="POST" action="" >
+								<div class="form-group p-form">
 									<label for="f_name">First Name</label>
 									<input type="text" class="form-control form-control-user" id="f_name" name="f_name" required placeholder="First Name" value="<?php echo $row['f_name'] ?? ''; ?>" >
 								</div>
-								<div class="form-group">
+								<div class="form-group p-form">
 									<label for="l_name">Last Name</label>
 									<input type="text" class="form-control form-control-user" id="l_name" name="l_name" required placeholder="Last Name" value="<?php echo $row['l_name'] ?? ''; ?>" >
 								</div>
-								<div class="form-group">
+								<div class="form-group p-form">
 									<label for="email">Email Address</label>
 									<input type="email" class="form-control form-control-user"
 										id="email" name="email" required placeholder="Enter Email Address" value="<?php echo $row['email'] ?? ''; ?>">
 								</div>
-								<div class="form-group">
+								<div class="form-group p-form">
 									<label for="password">Password</label>
 									<input type="password" class="form-control form-control-user"
 										id="password" name="password" placeholder="Password">
 								</div>
-								<div class="form-group">
+								<div class="form-group p-form">
 									<label for="c_password">Confirm Password</label>
 									<input type="password" class="form-control form-control-user"
 										id="c_password" name="c_password" placeholder="Confirm Password">
 								</div>
-							  
-								<input type="submit" id="submit_btn" name="submit_btn" value="UPDATE" class="btn btn-primary btn-user btn-block">
-								   
+							  <div class="form-group p-form">
+								<input type="submit" id="profile_btn" name="submit_btn" value="UPDATE" class="btn btn-primary btn-user btn-block">
+								   </div>
 								
 							</form>
                         </div>

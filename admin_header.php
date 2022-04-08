@@ -92,7 +92,7 @@
 			<li class="nav-item active">
                 <a class="nav-link" href="down_zip.php">
                     <i class="fas fa-fw fa-download"></i>
-                    <span>Download Survey Files Zip</span></a>
+                    <span>Download Survey Files</span></a>
             </li>
 
             <!-- Divider -->
