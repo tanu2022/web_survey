@@ -17,16 +17,19 @@ if(isset($_POST['submit_btn'])){
 		$last_id = $mysqli->insert_id;
 		$survey_upload_dir = 'survey_images/survey_'.$last_id; 
 		mkdir($survey_upload_dir, 0777, true);  //create directory if not exist
-		
+		$photo_meter_arr = array();
+		$photo_up_meter_arr = array();
 		
 		$photo_meter = array_filter($_FILES['photo_meter']['name']); 
 		if(!empty($photo_meter)){ 
 			foreach($_FILES['photo_meter']['name'] as $key=>$val){ 
 				// File upload path 
 				$fileName = basename($_FILES['photo_meter']['name'][$key]); 
-				$targetFilePath = $survey_upload_dir .'/meter_'.time().'_'. $fileName; 
+				//$targetFilePath = $survey_upload_dir .'/meter_'.time().'_'. $fileName; 
+				$targetFilePath = $survey_upload_dir .'/'. $fileName; 
 				
-				move_uploaded_file($_FILES["photo_meter"]["tmp_name"][$key], $targetFilePath);	
+				move_uploaded_file($_FILES["photo_meter"]["tmp_name"][$key], $targetFilePath);
+				$photo_meter_arr[] = $fileName;
 			} 
 		}
 		
@@ -35,11 +38,29 @@ if(isset($_POST['submit_btn'])){
 			foreach($_FILES['photo_upstream_meter']['name'] as $key=>$val){ 
 				// File upload path 
 				$fileName_up = basename($_FILES['photo_upstream_meter']['name'][$key]); 
-				$targetFilePath_up = $survey_upload_dir .'/upstream_'.time().'_'. $fileName_up; 
+				//$targetFilePath_up = $survey_upload_dir .'/upstream_'.time().'_'. $fileName_up; 
+				$targetFilePath_up = $survey_upload_dir .'/'. $fileName_up; 
 				
 				move_uploaded_file($_FILES["photo_upstream_meter"]["tmp_name"][$key], $targetFilePath_up);	
+				$photo_up_meter_arr[] = $fileName_up;
 			} 
 		}
+		
+		if(!empty($photo_meter_arr)){
+			$photo_meter_str = implode(', ', $photo_meter_arr );
+		} else {
+			$photo_meter_str = '';	
+		}
+		
+		if(!empty($photo_up_meter_arr)){
+			$photo_upstream_meter_str = implode(', ', $photo_up_meter_arr );
+		} else {
+			$photo_upstream_meter_str = '';	
+		}
+		
+		$update_sql = "UPDATE survey_tbl set photo_upstream_meter ='{$photo_upstream_meter_str}', photo_meter ='{$photo_meter_str}' WHERE id='{$last_id}' ";
+
+		mysqli_query($mysqli, $update_sql);
 		
 	  $success_insert = 'yes';
 	  $_SESSION['success_msg'] = "Your Survey Form has been submitted.";

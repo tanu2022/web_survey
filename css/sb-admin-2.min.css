@@ -10412,7 +10412,7 @@ button.btn.dropdown-toggle.btn-light {
     display: block;
     color: #505B5D;
     font-weight: bolder;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     font-size: 18px;
 }
 

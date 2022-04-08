@@ -29,7 +29,16 @@ if(isset($_POST['submit_btn'])){
 		} else {
 			$success_login = 'no';
 			$message = "Both password should be same";
+			$update_sql = '';
 		}
+	} else if($password != '' && $c_password == ''){
+		$success_login = 'no';
+		$message = "Please fill both passwords";
+		$update_sql = '';
+	} else if($password == '' && $c_password != ''){
+		$success_login = 'no';
+		$message = "Please fill both passwords";
+		$update_sql = '';
 	} else {
 		$update_sql = "UPDATE users set f_name='{$f_name}', l_name='{$l_name}', email='{$email}' WHERE id='{$user_id}' ";
 	}
@@ -45,10 +54,10 @@ if(isset($_POST['submit_btn'])){
 			$success_login = 'no';
 			$message = "Opps! Something went wrong";
 		}
-	} else {
+	} /*else {
 		$success_login = 'no';
 		$message = "Opps! Something went wrong";
-	}
+	}*/
 }
 
 include('admin_header.php');

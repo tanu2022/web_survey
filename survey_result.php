@@ -64,8 +64,8 @@ include('header.php');
 										<li class="myli">Size of the service (inches) : <span><?php echo $row['size_of_service'] ?? ''; ?></span></li>
 										<li class="myli">Material of the service upstream of the meter : <span><?php echo $row['material_of_service'] ?? ''; ?></span></li>
 										<li class="myli">Date constructed : <span><?php echo ($row['date_constructed'] == '' || $row['date_constructed'] == '0000-00-00' ) ? '' : date('m/d/Y',strtotime($row['date_constructed'])); ?></span></li>
-										<li class="myli">A photo of the service line upstream of the meter  <span>---------</span></li>
-										<li class="myli">A photo of the meter : <span>----------</span></li>
+										<li class="myli">A photo of the service line upstream of the meter  <span><?php echo $row['photo_upstream_meter'] ?? ''; ?></span></li>
+										<li class="myli">A photo of the meter : <span><?php echo $row['photo_meter'] ?? ''; ?></span></li>
 										
 										<?php
 										}
