@@ -19,10 +19,14 @@
 	
 	
 	
-	<script>jQuery("#date_constructed").datepicker({
-		format : 'mm/dd/yyyy',
-		autoclose : true
-	});</script>
+	<script>
+	jQuery(function(){
+		jQuery("#date_constructed").datepicker({
+			format : 'mm/dd/yyyy',
+			autoclose : true
+		});
+	});
+	</script>
 	
 	
 	
