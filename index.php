@@ -10,11 +10,18 @@ if(isset($_POST['submit_btn'])){
 	$size_of_service = $_POST['size_of_service'] ?? '';
 	$material_of_service = $_POST['material_of_service'] ?? '';
 	$date_constructed = date('Y-m-d',strtotime($_POST['date_constructed'])) ?? '';
+	$last_img_id = $_POST['survey_id'] ?? '';
 	
-	$insert_sql = "INSERT INTO survey_tbl set resident_f_name='{$resident_f_name}', resident_l_name='{$resident_l_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}'";
+	if($last_img_id != ''){
+		$insert_sql = "UPDATE survey_tbl set resident_f_name='{$resident_f_name}', resident_l_name='{$resident_l_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}' WHERE id='{$last_img_id}'";
+	} else {
+		$insert_sql = "INSERT INTO survey_tbl set resident_f_name='{$resident_f_name}', resident_l_name='{$resident_l_name}', resident_address='{$resident_address}', location_of_meter='{$location_of_meter}', size_of_service='{$size_of_service}', material_of_service='{$material_of_service}', date_constructed='{$date_constructed}'";
+	}
+	
+	
 
 	if (mysqli_query($mysqli, $insert_sql)) {
-		$last_id = $mysqli->insert_id;
+		/*$last_id = $mysqli->insert_id;
 		$survey_upload_dir = 'survey_images/survey_'.$last_id; 
 		mkdir($survey_upload_dir, 0777, true);  //create directory if not exist
 		$photo_meter_arr = array();
@@ -60,7 +67,7 @@ if(isset($_POST['submit_btn'])){
 		
 		$update_sql = "UPDATE survey_tbl set photo_upstream_meter ='{$photo_upstream_meter_str}', photo_meter ='{$photo_meter_str}' WHERE id='{$last_id}' ";
 
-		mysqli_query($mysqli, $update_sql);
+		mysqli_query($mysqli, $update_sql);*/
 		
 	  $success_insert = 'yes';
 	  $_SESSION['success_msg'] = "Your Survey Form has been submitted.";
@@ -100,6 +107,7 @@ include('header.php');
 								</div>
                             </div>
                             <form class="user" name="survey_form" method="POST" action="" enctype="multipart/form-data" autocomplete="off" >
+								<input type="hidden" name="survey_id" id="survey_id" value="" > 
                                 <div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<label for="resident_f_name">Resident First Name</label>
@@ -180,11 +188,27 @@ include('header.php');
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
 										<label for="photo_upstream_meter">A photo of the service line upstream of the meter</label>
-										<input type="file" class="form-control form-control-user" name="photo_upstream_meter[]" multiple required >
+										<!--<input type="file" class="form-control form-control-user" name="photo_upstream_meter[]" multiple required >-->
+										<div id="drop_file_zone" ondrop="upload_file(event)" ondragover="return false">
+											<div id="drag_upload_file">
+												<p>Drop file(s) here</p>
+												<p>or</p>
+												<p><input type="button" value="Select File(s)" onclick="file_explorer();" /></p>
+												<input type="file" id="selectfile" name="file" multiple />
+											</div>
+										</div>
 									</div>
 									<div class="col-sm-6">
 										<label for="photo_meter">A photo of the meter</label>
-										<input type="file" class="form-control form-control-user" name="photo_meter[]" multiple required>
+										<!--<input type="file" class="form-control form-control-user" name="photo_meter[]" multiple required>-->
+										<div id="drop_file_zone2" ondrop="upload_file2(event)" ondragover="return false">
+											<div id="drag_upload_file2">
+												<p>Drop file(s) here 2</p>
+												<p>or</p>
+												<p><input type="button" value="Select File2(s)" onclick="file_explorer2();" /></p>
+												<input type="file" id="selectfile2" name="file2" multiple />
+											</div>
+										</div>
 									</div>
                                 </div>
 								<div class="form-group row">

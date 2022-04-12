@@ -10460,8 +10460,6 @@ button.btn.dropdown-toggle.btn-light {
 }
 
 
-
-
 #dataTable tbody tr td .before_edit {
     border: none;
     padding: 2px 8px;
@@ -10486,4 +10484,42 @@ button.btn.dropdown-toggle.btn-light {
 #dataTable tbody tr td .after_edit {
     width: 50%;
     padding: 2px 8px
+}
+
+#drop_file_zone {
+    background-color: #EEE;
+    border: #999 5px dashed;
+    width: 290px;
+    height: 200px;
+    padding: 8px;
+    font-size: 18px;
+}
+#drag_upload_file {
+  width:50%;
+  margin:0 auto;
+}
+#drag_upload_file p {
+  text-align: center;
+}
+#drag_upload_file #selectfile {
+  display: none;
+}
+
+#drop_file_zone2 {
+    background-color: #EEE;
+    border: #999 5px dashed;
+    width: 290px;
+    height: 200px;
+    padding: 8px;
+    font-size: 18px;
+}
+#drag_upload_file2 {
+  width:50%;
+  margin:0 auto;
+}
+#drag_upload_file2 p {
+  text-align: center;
+}
+#drag_upload_file2 #selectfile2 {
+  display: none;
 }
