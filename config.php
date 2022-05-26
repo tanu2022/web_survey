@@ -1,5 +1,4 @@
 <?PHP
-
 $dbuser = 'root';
 $dbpass = '';
 $dbname = 'web_survey'; 

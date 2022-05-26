@@ -2231,7 +2231,7 @@ textarea.form-control.is-invalid {
     border-radius: 35px;
     padding: 10px 20px;
     border: 1px solid #D1D3E2;
-    /*background-color: #fff;*/
+    background-color: #fff;
 }
 a.btn.disabled,
 fieldset:disabled a.btn {
@@ -10478,7 +10478,7 @@ button.btn.dropdown-toggle.btn-light {
 }
 
 #dataTable tbody tr td a {
-    /*display: inline-block;*/
+    display: inline-block;
 }
 
 #dataTable tbody tr td .after_edit {

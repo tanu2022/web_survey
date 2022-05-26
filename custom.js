@@ -26,7 +26,6 @@ function file_explorer2() {
 }
   
 function ajax_file_upload(files_obj,box_obj) {
-	//alert('hiiiiiii')
     if(files_obj != undefined) {
         var form_data = new FormData();
         for(i=0; i<files_obj.length; i++) {
@@ -53,7 +52,7 @@ function ajax_file_upload(files_obj,box_obj) {
 					document.getElementById("drop_file_zone2").classList.add("imgFilled"); 
 					document.getElementById("img_str").innerHTML = myArr.img_name_str; 
 				}
-                // alert(this.responseText);
+
             } else {
                 alert("Error " + xhttp.status + " occurred when trying to upload your file.");
             }

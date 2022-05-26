@@ -6,6 +6,7 @@ include('config.php');
 		header('Location: login.php');
 	}
 
+
 if(isset($_GET['s_id']) && $_GET['s_id'] != ''){
 	$delete_survey_row = "DELETE FROM survey_tbl WHERE id='".$_GET['s_id']."' ";
 	if ($mysqli->query($delete_survey_row) === TRUE) {
@@ -18,6 +19,7 @@ if(isset($_GET['s_id']) && $_GET['s_id'] != ''){
 		$success_insert = 'no';
 	}
 }
+
 
 $get_survey_data_sql = "SELECT * FROM survey_tbl WHERE resident_f_name IS NOT NULL ORDER BY id DESC";
 $surveyData = $mysqli->query($get_survey_data_sql);
@@ -85,15 +87,16 @@ include('admin_header.php');
 												?>
 												<tr>
 													<td>
-														<a href="survey_show.php?s_id=<?php echo $row['id']; ?>" class="btn btn-success btn-circle">
-															<i class="fas fa-eye"></i>
+														<a class="nav-link text-muted" href="survey_show.php?s_id=<?php echo $row['id']; ?>"  title="VIEW">
+																<i class="fas fa-fw fa-eye"></i>
 														</a>
-														<a href="survey_edit.php?s_id=<?php echo $row['id']; ?>" class="btn btn-warning btn-circle">
-															<i class="fas fa-edit"></i>
+														<a class="nav-link" href="survey_edit.php?s_id=<?php echo $row['id']; ?>" class="edit_icon" title="EDIT">
+																<i class="fas fa-fw fa-edit"></i>
 														</a>
-														<a href="?s_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this row?');" class="btn btn-danger btn-circle">
-															<i class="fas fa-trash text-white"></i>
+														<a class="nav-link" href="?s_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this row?');"  title="DELETE">
+																<i class="fas fa-fw fa-trash"></i>
 														</a>
+														
 													</td>
 													<td><?php echo $row['resident_f_name'] ?? '';  ?></td>
 													<td><?php echo $row['resident_l_name'] ?? ''; ?></td>
