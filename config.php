@@ -6,11 +6,11 @@ $dbname = 'web_survey';
 $dbhost = 'localhost';
 $site_path = 'http://localhost/web_survey';
 
-// $dbuser = 'web-survey';
-// $dbpass = '4H3-^JxWy&-%273';
-// $dbname = 'web-survey'; 
+// $dbuser = 'drainlineguard_survey';
+// $dbpass = 'Staple@123321';
+// $dbname = 'drainlineguard_survey'; 
 // $dbhost = 'localhost';
-// $site_path = 'http://50.116.49.118/web_survey';
+// $site_path = 'https://drainlineguard.com/survey/';
 
 $mysqli = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 

@@ -76,9 +76,9 @@ include('admin_header.php');
 							</form>
 							<div class="return_msg">
 									<?php if($success_insert == 'yes'){ ?>
-									<div class="bg-success">Excel Data Imported Successfully.</div>
+									<div class="mb-4 value-data">Excel Data Imported Successfully.</div>
 									<?php } else if($success_insert == 'no') { ?>
-									<div class="bg-danger">Opps! Something went wrong.</div>
+									<div class="mb-4 value-data-danger">Opps! Something went wrong.</div>
 									<?php } ?>
 								</div>
 						</div>
@@ -90,14 +90,10 @@ include('admin_header.php');
                                             <th>Resident Address</th>
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Resident Address</th>
-                                        </tr>
-                                    </tfoot>
+                                    
                                     <tbody>
 										<?php
-											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY address ASC";
+											$SQLSELECT = "SELECT * FROM address_tbl ORDER BY id ASC";
 											$result_set =  $mysqli->query($SQLSELECT);
 											if (!empty($result_set->num_rows)) {
 												while($row = mysqli_fetch_array($result_set))

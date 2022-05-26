@@ -1,5 +1,7 @@
 <!-- Bootstrap core JavaScript-->
+
     <script src="vendor/jquery/jquery.min.js"></script>
+	<script src="custom.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- Latest compiled and minified JavaScript -->
@@ -8,8 +10,8 @@
 
 		
 	<!-- Include Bootstrap Datepicker -->
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>
+	<!--<script src="vendor/bootstrap/js/bootstrap-datepicker.min.js"></script>-->
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/js/bootstrap-datepicker.min.js"></script>-->
 	
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -19,10 +21,14 @@
 	
 	
 	
-	<script>jQuery("#date_constructed").datepicker({
-		format : 'mm/dd/yyyy',
-		autoclose : true
-	});</script>
+	<script>
+	/*jQuery(function(){
+		jQuery("#date_constructed").datepicker({
+			format : 'mm/dd/yyyy',
+			autoclose : true
+		});
+	});*/
+	</script>
 	
 	
 	

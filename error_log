@@ -1,0 +1,20 @@
+[05-Apr-2022 13:34:51 UTC] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/drainlineguard/public_html/survey/config.php on line 15
+[05-Apr-2022 13:35:06 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 13:35:12 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 13:35:16 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 13:35:26 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 13:35:27 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 13:36:02 UTC] PHP Parse error:  syntax error, unexpected ''https://drainlineguard.com/su' (T_ENCAPSED_AND_WHITESPACE) in /home/drainlineguard/public_html/survey/config.php on line 13
+[05-Apr-2022 20:21:47 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function PhpOffice\PhpSpreadsheet\Reader\mime_content_type() in /home/drainlineguard/public_html/survey/excel_reader/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Csv.php:454
+Stack trace:
+#0 /home/drainlineguard/public_html/survey/excel_reader/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php(118): PhpOffice\PhpSpreadsheet\Reader\Csv->canRead('/tmp/phpYSVMa5')
+#1 /home/drainlineguard/public_html/survey/excel_reader/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/IOFactory.php(76): PhpOffice\PhpSpreadsheet\IOFactory::createReaderForFile('/tmp/phpYSVMa5')
+#2 /home/drainlineguard/public_html/survey/import_address.php(16): PhpOffice\PhpSpreadsheet\IOFactory::load('/tmp/phpYSVMa5')
+#3 {main}
+  thrown in /home/drainlineguard/public_html/survey/excel_reader/vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet/Reader/Csv.php on line 454
+[08-Apr-2022 07:02:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function () in /home/drainlineguard/public_html/survey/profile.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/drainlineguard/public_html/survey/profile.php on line 34
+[13-Apr-2022 18:09:18 UTC] PHP Warning:  array_filter() expects parameter 1 to be array, null given in /home/drainlineguard/public_html/survey/ajax.php on line 7
+[13-Apr-2022 18:12:11 UTC] PHP Warning:  unlink(survey_files.zip): No such file or directory in /home/drainlineguard/public_html/survey/down_zip.php on line 48

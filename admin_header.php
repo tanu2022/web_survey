@@ -16,6 +16,9 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+		
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -34,11 +37,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="tables.php">
                 <!-- <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-poll"></i>
                 </div> -->
-                <div class="sidebar-brand-text mx-3"><img src="http://50.116.49.118/web_survey/img/dark_logo.png" width="150px"> <sup></sup></div>
+                <div class="sidebar-brand-text mx-3"><img src="img/dark_logo.png" width="150px"> <sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -55,8 +58,26 @@
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
                 <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-poll"></i>
                     <span>Survey</span></a>
+            </li>
+			
+			<!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="material_drop.php">
+                    <i class="fas fa-industry"></i>
+                    <span>Material Dropdown</span></a>
+            </li>
+			
+			<!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+			
+			<li class="nav-item active">
+                <a class="nav-link" href="location_drop.php">
+                    <i class="fas fa-map-marker"></i>
+                    <span>Location Dropdown</span></a>
             </li>
 
             <!-- Divider -->
@@ -64,7 +85,7 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="import_address.php">
-                    <i class="fas fa-fw fa-table"></i>
+                    <i class="fas fa-file-import"></i>
                     <span>Import Address</span></a>
             </li>
 			
@@ -73,8 +94,8 @@
 			
 			<li class="nav-item active">
                 <a class="nav-link" href="down_zip.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Download Survey Files Zip</span></a>
+                    <i class="fas fa-fw fa-download"></i>
+                    <span>Download Survey Files</span></a>
             </li>
 
             <!-- Divider -->
